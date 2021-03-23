@@ -85,7 +85,7 @@ docker run -it -v $OUTPUT:/app/output ramazanpolat/mimic-fraud-data:v1 python ge
 
 ## In another window, start loading
 
-````py
+```py
 chmod a+X loader.sh
 ./loader.sh
 ```
