@@ -62,6 +62,7 @@ Time: 3.314347505569458. Speed: 1509 users/sec.
 
 # Docker
 
+```bash
 docker pull ramazanpolat/mimic-fraud-data:v1
 
 mkdir -p mimic/output
@@ -80,3 +81,12 @@ docker run -it --rm --name=mimic ramazanpolat/mimic-fraud-data:v1 bash
 docker copy mimic:/app/loader.sh $MIMIC
 
 docker run -it -v $OUTPUT:/app/output ramazanpolat/mimic-fraud-data:v1 python generate.py 100 4
+```
+
+## In another window, start loading
+
+````py
+chmod a+X loader.sh
+./loader.sh
+```
+
