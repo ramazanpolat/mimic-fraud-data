@@ -72,9 +72,11 @@ OUTPUT=$(pwd)
 cd ..
 
 -> NEW WINDOW
+
 docker run -it --rm --name=mimic ramazanpolat/mimic-fraud-data:v1 bash
 
 -> OLD WINDOW
+
 docker copy mimic:/app/loader.sh $MIMIC
 
 docker run -it -v $OUTPUT:/app/output ramazanpolat/mimic-fraud-data:v1 python generate.py 100 4
