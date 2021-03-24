@@ -5,28 +5,30 @@ import click
 
 
 @click.command()
-@click.argument('data_count', type=int, default=3000)
-@click.argument('process_count', type=int, default=2)
-def parallel_gen(data_count, process_count=None):
-    print('data_count:', data_count)
+@click.argument('total_data_count', type=int, default=30000)
+@click.argument('batch_count', type=int, default=10000)
+@click.argument('process_count', type=int, default=5)
+def parallel_gen(total_data_count, batch_count, process_count=None):
+    print('total_data_count:', total_data_count)
+    print('batch_count:', batch_count)
     if process_count == 0:
         process_count = multiprocessing.cpu_count() // 2
 
     print(f'Using {process_count} processes.')
-    count_for_each = round(data_count / process_count)
+    count_for_each = round(batch_count / process_count)
 
     print('count_for_each:', count_for_each)
 
-    total_count = 0
+    total_counter = 0
     i = 0
-    while total_count < data_count:
+    while total_counter < total_data_count:
         i += 1
-        print(f'=== BATCH {i} === count_for_each: {count_for_each}')
-        command = ["python", "generate.py", f"{count_for_each}", f"{process_count}"]
+        print(f'=== BATCH {i} === batch_count: {batch_count}')
+        command = ["python", "generate.py", f"{batch_count}", f"{process_count}"]
         print('command:', command)
         sub = subprocess.Popen(command)
         sub.wait()
-        total_count += count_for_each
+        total_counter += batch_count
         time.sleep(1)
 
     print('All jobs finished.')
