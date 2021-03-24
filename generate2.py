@@ -17,17 +17,16 @@ def parallel_gen(data_count, process_count=None):
 
     print('count_for_each:', count_for_each)
 
-    sub = None
-    for i in range(process_count):
-        print(f'{i + 1}-> python gen-cb.py {count_for_each}')
-        command = ["python", "gen-cb.py", f"{count_for_each}", "15"]
+    total_count = 0
+    i = 0
+    while total_count < data_count:
+        i += 1
+        print(f'=== BATCH {i} === count_for_each: {count_for_each}')
+        command = ["python", "generate.py", f"{count_for_each}", f"{process_count}"]
         print('command:', command)
         sub = subprocess.Popen(command)
-        time.sleep(1)
-
-    if sub:
-        print('WAIT for data generation to finish...')
         sub.wait()
+        total_count += count_for_each
         time.sleep(1)
 
     print('All jobs finished.')

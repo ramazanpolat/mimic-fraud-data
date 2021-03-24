@@ -130,7 +130,10 @@ def generate_data(data_count, result_per_user=15):
     os.rename(user_file_gen_ext, user_file_load_ext)
 
     took = time.time() - start_time
-    speed = user_count / took
+    if took <= 0.001:
+        speed = 0
+    else:
+        speed = user_count / took
 
     print(
         f"Generated user data: {user_count}, result data: {user_count}x{result_per_user}={result_per_user * user_count}\n"
