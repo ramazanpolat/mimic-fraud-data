@@ -17,16 +17,19 @@ def parallel_gen(data_count, process_count=None):
 
     print('count_for_each:', count_for_each)
 
+    sub = None
     for i in range(process_count):
         print(f'{i + 1}-> python gen-cb.py {count_for_each}')
         command = ["python", "gen-cb.py", f"{count_for_each}", "15"]
         print('command:', command)
-        subprocess.Popen(command)
+        sub = subprocess.Popen(command)
         time.sleep(1)
 
+    if sub:
+        print('WAIT for data generation to finish...')
+        sub.wait()
+
     print('All jobs finished.')
-    print('Press ENTER to exit.')
-    input()
 
 
 if __name__ == '__main__':

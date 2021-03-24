@@ -81,6 +81,7 @@ def generate_data(data_count, result_per_user=15):
     for user in Mimic.generate(count=user_count):
         insert_dt = DateTime.between_ts(from_ts, to_ts)
 
+        # user.type = 'user'
         user.insert_date = str(insert_dt.date())
         user.insert_time = insert_dt.isoformat()
         user.user_detail_id = 1
@@ -105,6 +106,7 @@ def generate_data(data_count, result_per_user=15):
         for result in Mimic.generate(count=result_per_user):
             record_date = DateTime.between_ts(insert_dt.timestamp(), to_ts)
 
+            # result.type = 'result'
             result.record_date = record_date.isoformat()
             result.mbb = user.mbb
             result.device_uid = user.imei
