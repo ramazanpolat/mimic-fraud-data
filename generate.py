@@ -41,7 +41,7 @@ def parallel_gen(user_count, batch_size, process_count):
             print('WAIT for data generation to finish...')
             sub.wait()
             time.sleep(1)
-            print(print(f'-- BATCH {batch_id} finished.'))
+            print(f'-- BATCH {batch_id} finished.')
             batch_id += 1
 
     print('All jobs finished.')

@@ -87,7 +87,7 @@ def generate_data(user_count=150, fraud_count=50, start_year=2017, end_year=2021
         base.mbb = user_seed
         base.device_client_id = hashlib.sha512(user_seed_str.encode()).hexdigest()
         base.imei = hashlib.md5(user_seed_str.encode()).hexdigest().upper()[:15]
-        base.msisdn = 9055500000 + base.mbb * pow(10, 10)
+        base.msisdn = str(9055500000 + base.mbb * pow(10, 10))
 
         for user in Mimic.generate(count=user_data_per_device):
             insert_dt = DateTime.between_ts(from_ts, to_ts)
