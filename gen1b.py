@@ -74,6 +74,7 @@ def generate_data(user_count=150, fraud_count=50, start_year=2017, end_year=2021
 
     user_file = open(user_file_gen_ext, 'w')
     fraud_file = open(fraud_file_gen_ext, 'w')
+    fraud_data_written = False
 
     random.seed(0)
 
@@ -114,6 +115,7 @@ def generate_data(user_count=150, fraud_count=50, start_year=2017, end_year=2021
             # print(user)
 
         if user_seed - seed < fraud_count:
+            fraud_data_written = True
             fraud = Prodict()
             record_date = DateTime.between_ts(from_ts, to_ts)
 
@@ -137,8 +139,11 @@ def generate_data(user_count=150, fraud_count=50, start_year=2017, end_year=2021
     print('Done.')
     user_file.close()
     fraud_file.close()
-    os.rename(fraud_file_gen_ext, fraud_file_load_ext)
     os.rename(user_file_gen_ext, user_file_load_ext)
+    if fraud_data_written:
+        os.rename(fraud_file_gen_ext, fraud_file_load_ext)
+    else:
+        os.remove(fraud_file_gen_ext)
 
 
 if __name__ == '__main__':

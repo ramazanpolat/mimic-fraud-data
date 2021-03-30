@@ -8,7 +8,7 @@ while true; do
         #cat $file | docker run -i --rm --link ch1:ch1 yandex/clickhouse-client --host ch1 -q "insert into user(insert_time, user_detail_id, user_id, mbb, device_client_id, device_client_ip, device_os, is_cracked, connection_type, imei, carrier, operation, is_success,msisdn) FORMAT JSONEachRow"
         docker run -i --rm --link clickhouse:clickhouse yandex/clickhouse-client:20.8.12.2 --host clickhouse -q "insert into user_detail(user_detail_id,user_id,mbb,device_client_id,device_client_ip,device_os,is_cracked,connection_type,imei,carrier,operation,insert_date,insert_time,is_success,msisdn,type) FORMAT JSONEachRow" <$file
         echo "Loading $file..."
-        sleep 1
+        sleep 0.1
         printf 'done.\n'
       fi
 
