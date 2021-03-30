@@ -15,7 +15,7 @@ Mimic fraud data bank
 E.g:
 
 ```bash
-$ python3.8 generate.py 3000000 10
+$ python3.8 generate_old.py 3000000 10
 
 data_count: 300000
 Using 4 processes.
@@ -80,7 +80,7 @@ docker run -it --rm --name=mimic ramazanpolat/mimic-fraud-data:v1 bash
 
 docker copy mimic:/app/loader.sh $MIMIC
 
-docker run -it -v $OUTPUT:/app/output ramazanpolat/mimic-fraud-data:v1 python generate.py 100 4
+docker run -it -v $OUTPUT:/app/output ramazanpolat/mimic-fraud-data:v1 python generate_old.py 100 4
 ```
 
 ## In another window, start loading

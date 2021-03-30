@@ -107,7 +107,7 @@ def generate_data(data_count, result_per_user=15):
             record_date = DateTime.between_ts(insert_dt.timestamp(), to_ts)
 
             # result.type = 'result'
-            result.record_date = record_date.isoformat()
+            result.record_date = str(record_date.date())
             result.mbb = user.mbb
             result.device_uid = user.imei
             result.query_name = switch_query(random.randint(1, 100))

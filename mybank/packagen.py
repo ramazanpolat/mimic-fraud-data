@@ -389,3 +389,12 @@ for ix, game in enumerate(games):
     number = ':0' if random.randint(1, 2) == 1 else ':1'
     package = '.'.join([tld, company, game]) + number
     packages.append(package)
+
+packages.append('com.generalmobile.assistant:0')
+packages.append('com.cleanmaster.security:0')
+packages.append('com.generalmobile.storeoid:0')
+packages.append('com.mobilegames.spacer:0')
+packages.append('com.candy.crusher:0')
+
+# for ix, p in enumerate(packages):
+#     print(ix, p)

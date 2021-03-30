@@ -24,7 +24,7 @@ def parallel_gen(total_data_count, batch_count, process_count=None):
     while total_counter < total_data_count:
         i += 1
         print(f'=== BATCH {i} === batch_count: {batch_count}')
-        command = ["python", "generate.py", f"{batch_count}", f"{process_count}"]
+        command = ["python", "generate_old.py", f"{batch_count}", f"{process_count}"]
         print('command:', command)
         sub = subprocess.Popen(command)
         sub.wait()

@@ -1,14 +1,18 @@
 import random
 
-phones_list = ["Huawei U8230", "Honor 30 Lite", "Huawei P40 lite", "LG G3", "LG V30", "Meizu 16Xs", "Meizu Note 9",
-               "Galaxy Nexus", "Moto X4", "Samsung Galaxy S4", "Samsung Galaxy S5", "Samsung Galaxy C5",
-               "Samsung Galaxy Fold", "Samsung Galaxy A6s", "Redmi 8A", "Oppo Neo 5s"]
+phone_brands = ["Huawei U8230", "Honor 30 Lite", "Huawei P40 lite", "LG G3", "LG V30", "Meizu 16Xs", "Meizu Note 9",
+                "Galaxy Nexus", "Moto X4", "Samsung Galaxy S4", "Samsung Galaxy S5", "Samsung Galaxy C5",
+                "Samsung Galaxy Fold", "Samsung Galaxy A6s", "Redmi 8A", "Oppo Neo 5s"]
 
 big_ver_list = ["7.1", "7.1.2", "8", "8.1", "9", "10", "11"]
 
 operation_list = ["DIREKTLOGIN", "DIREKTOPEN", "DIREKTSENDMONEY", "DIREKTEFT", "DIREKTLOGOUT", "DIREKTCHANGEPASS"]
 
-carrier_list = ["Turkcell", "Vodafone", "Turk Telekom"]
+carrier_list = ["Turkcell", "Vodafone TR", "Turk Telekom"]
+
+
+def probably(chance):
+    return random.random() < chance
 
 
 class Mobile:
@@ -48,13 +52,13 @@ class Mobile:
         os = "ANDROID"
         big_ver = random.choice(big_ver_list)
         ver = "V4.1.10"
-        phones = random.choice(phones_list)
+        phones = random.choice(phone_brands)
 
-        return "|".join([os + ' ' + big_ver, ver, phones, "TR", str(random.randint(100000, 999999))])
+        return "|".join([os + ' ' + big_ver, ver, phones, "TR", '1234567890123456789012'])
 
     @classmethod
     def is_cracked(cls) -> int:
-        return 0 if random.randint(1, 100) < 85 else 1
+        return 0 if random.randint(1, 100) < 95 else 1
 
     @classmethod
     def connection_type(cls) -> str:
@@ -67,3 +71,7 @@ class Mobile:
     @classmethod
     def operation(cls) -> str:
         return random.choice(operation_list)
+
+    @classmethod
+    def is_success(cls) -> str:
+        return '1' if probably(95/100) else '0'
