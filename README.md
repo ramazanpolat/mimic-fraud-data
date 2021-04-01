@@ -1,6 +1,6 @@
 # mimic-fraud-data
 
-Mimic fraud data bank
+Mimic bank fraud data
 
 ## requirements
 
@@ -8,53 +8,24 @@ Mimic fraud data bank
 * `pip3.8 install -r requirements.txt`
 * `chmod a+x loader.sh`
 
+*Note*: We only need 2 packages:
+
+* `pip install prodict`
+* `pip install click`
+
 ## generate data
 
-`python3.8 generate.py DATA_COUNT PROCESS_COUNT`
-
-E.g:
-
 ```bash
-$ python3.8 generate_old.py 3000000 10
+$ python3.8 generate.py --help
+Usage: generate.py [OPTIONS] [USER_COUNT] [BATCH_SIZE] [PROCESS_COUNT]
 
-data_count: 300000
-Using 4 processes.
-count_for_each: 75000
-1-> python gen-cb.py 75000
-command: ['python', 'gen-cb.py', '75000', '15']
-data_count: 75000
-user_count: 5000
-result_per_user: 15
-File id: 1616268098-4196
-2-> python gen-cb.py 75000
-command: ['python', 'gen-cb.py', '75000', '15']
-data_count: 75000
-user_count: 5000
-result_per_user: 15
-File id: 1616268099-7064
-3-> python gen-cb.py 75000
-command: ['python', 'gen-cb.py', '75000', '15']
-data_count: 75000
-user_count: 5000
-result_per_user: 15
-File id: 1616268100-1813
-4-> python gen-cb.py 75000
-command: ['python', 'gen-cb.py', '75000', '15']
-data_count: 75000
-user_count: 5000
-result_per_user: 15
-File id: 1616268101-6989
-Generated user data: 5000, result data: 5000x15=75000
-Time: 3.3086609840393066. Speed: 1511 users/sec.
-All jobs finished.
-Press ENTER to exit.
-Generated user data: 5000, result data: 5000x15=75000
-Time: 3.318495988845825. Speed: 1507 users/sec.
-Generated user data: 5000, result data: 5000x15=75000
-Time: 3.2984821796417236. Speed: 1516 users/sec.
-Generated user data: 5000, result data: 5000x15=75000
-Time: 3.314347505569458. Speed: 1509 users/sec.
+Options:
+  --help  Show this message and exit.
 ```
+
+### Recommended params
+
+`python3.8 generate.py 15000000 1000000 8`
 
 ## load data
 
@@ -86,7 +57,9 @@ docker run -it -v $OUTPUT:/app/output ramazanpolat/mimic-fraud-data:v1 python ge
 ## In another window, start loading
 
 ```py
-chmod a+X loader.sh
-./loader.sh
+chmod
+a + X
+loader.sh
+./ loader.sh
 ```
 

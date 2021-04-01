@@ -5,9 +5,9 @@ import click
 
 
 @click.command()
-@click.argument('user_count', type=int, default=10000)
-@click.argument('batch_size', type=int, default=1000)
-@click.argument('process_count', type=int, default=4)
+@click.argument('user_count', type=int, default=15000000)
+@click.argument('batch_size', type=int, default=1000000)
+@click.argument('process_count', type=int, default=8)
 def parallel_gen(user_count, batch_size, process_count):
     print('user_count:', user_count)
     if process_count == 0:
