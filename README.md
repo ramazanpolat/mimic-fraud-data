@@ -23,15 +23,23 @@ Options:
   --help  Show this message and exit.
 ```
 
-### Recommended params
+### recommended params
 
 `python3.8 generate.py 15000000 1000000 8`
+
+Generates 
+* 1B user_detail rows
+* 50K fraud_result rows
+  
+* 15M unique users in `user_detail`
+* All dates are between `2017-01-01` and `2021-01-01`
+
 
 ## load data
 
 `./loader.sh`
 
-# Docker
+# docker
 
 ```bash
 docker pull ramazanpolat/mimic-fraud-data:v1

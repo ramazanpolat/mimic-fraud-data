@@ -48,9 +48,9 @@ def probably(chance):
 @click.argument('start_year', type=int, default=2017)
 @click.argument('end_year', type=int, default=2021)
 @click.argument('user_start', type=int, default=0)
-@click.argument('user_data_per_device', type=int, default=67)
+@click.argument('user_data_per_user', type=int, default=67)
 def generate_data(user_count=150, fraud_count=50, start_year=2017, end_year=2021, user_start=0,
-                  user_data_per_device=67):
+                  user_data_per_user=67):
     print(f'Generating {user_count} data. Offset: {user_start}')
     switch_query = Switch(between_table)
 
@@ -90,7 +90,7 @@ def generate_data(user_count=150, fraud_count=50, start_year=2017, end_year=2021
         base.imei = hashlib.md5(user_seed_str.encode()).hexdigest().upper()[:15]
         base.msisdn = str(9055500000 + base.mbb * pow(10, 10))
 
-        for user in Mimic.generate(count=user_data_per_device):
+        for user in Mimic.generate(count=user_data_per_user):
             insert_dt = DateTime.between_ts(from_ts, to_ts)
 
             user.insert_date = str(insert_dt.date())
@@ -114,7 +114,7 @@ def generate_data(user_count=150, fraud_count=50, start_year=2017, end_year=2021
             user_file.write(json.dumps(user) + os.linesep)
             # print(user)
 
-        if user_seed - seed < fraud_count:
+        if user_seed - seed <= fraud_count:
             fraud_data_written = True
             fraud = Prodict()
             record_date = DateTime.between_ts(from_ts, to_ts)

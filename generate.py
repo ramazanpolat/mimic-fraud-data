@@ -22,16 +22,16 @@ def parallel_gen(user_count, batch_size, process_count):
     start_year = 2017
     end_year = 2021
     user_start = 0
-    user_data_per_device = 67
+    user_data_per_user = 67
     batch_id = 1
-    while user_start + batch_size < user_count:
+    while True:
         print(f'=== BATCH {batch_id} ===')
         sub = None
         for i in range(process_count):
-            print(
-                f'{i + 1}-> python gen1b.py {count_for_each} {fraud_count} {start_year} {end_year} {user_start} {user_data_per_device}')
+            print(f'{i + 1}-> python gen1b.py {count_for_each=} {fraud_count=} {start_year=} {end_year=} '
+                  f'{user_start=} {user_data_per_user=}')
             command = ['python', 'gen1b.py', f'{count_for_each}', f'{fraud_count}', f'{start_year}', f'{end_year}',
-                       f'{user_start}', f'{user_data_per_device}']
+                       f'{user_start}', f'{user_data_per_user}']
             print('command:', command)
             sub = subprocess.Popen(command)
             user_start += count_for_each
@@ -40,9 +40,12 @@ def parallel_gen(user_count, batch_size, process_count):
         if sub:
             print('WAIT for data generation to finish...')
             sub.wait()
-            time.sleep(1)
+            time.sleep(0.1)
             print(f'-> BATCH {batch_id} finished.')
             batch_id += 1
+
+        if user_start >= user_count:
+            break
 
     print('All jobs finished.')
 
